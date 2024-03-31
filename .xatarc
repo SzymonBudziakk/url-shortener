@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Szymon-Budziak-s-workspace-c8ipea.us-east-1.xata.sh/db/Url_Shortener",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
