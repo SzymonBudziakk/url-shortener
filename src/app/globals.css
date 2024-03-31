@@ -5,3 +5,7 @@
 .cl-internal-b3fm6y {
   @apply hidden
 }
+
+.navbarLink {
+  @apply text-gray-800 hover:text-gray-900 px-3 py-2
+}

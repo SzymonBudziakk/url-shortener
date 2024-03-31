@@ -1,0 +1,16 @@
+{
+  "id": "mig_co4oq8upe2mbada2uer0",
+  "parentID": "mig_co4opnkfiil5rc1uareg",
+  "checksum": "1:a80d01ddb1eb846c9d07b35887dd1ceb1e92ceea1f05b54c2cc2e952d483f6c5",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "userId",
+          "type": "string"
+        },
+        "table": "urls"
+      }
+    }
+  ]
+}

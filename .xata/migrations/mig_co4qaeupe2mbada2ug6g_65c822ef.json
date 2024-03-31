@@ -1,0 +1,18 @@
+{
+  "id": "mig_co4qaeupe2mbada2ug6g",
+  "parentID": "mig_co4qac6pe2mbada2ug5g",
+  "checksum": "1:65c822efe250971b574491ab31539a2cbc48222fe331a8e328796b1ae862e33d",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "shortUrl",
+          "type": "text",
+          "notNull": true,
+          "defaultValue": "https://www.google.com/"
+        },
+        "table": "urls"
+      }
+    }
+  ]
+}

@@ -15,19 +15,22 @@ export default function FolderForm({ createFolder }: FolderFormProps) {
         formRef.current?.reset()
       }}
       ref={formRef}
-      className='flex flex-col gap-6 max-w-40'
     >
-      <label htmlFor='name'>New Name</label>
-      <input
-        name='name'
-        id='name'
-        type='text'
-        placeholder='My folder'
-        className='text-black'
-      />
-      <button type='submit' className='bg-white p-2 rounded-md text-black'>
-        Submit
-      </button>
+      <div className='mb-4'>
+        <input
+          type='text'
+          placeholder='Type your url here...'
+          className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+        />
+      </div>
+      <div className='mb-6'>
+        <button
+          type='submit'
+          className='bg-blue-500 hover:bg-blue-600 transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+        >
+          Submit
+        </button>
+      </div>
     </form>
   )
 }

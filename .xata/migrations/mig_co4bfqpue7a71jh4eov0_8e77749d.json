@@ -1,0 +1,18 @@
+{
+  "id": "mig_co4bfqpue7a71jh4eov0",
+  "parentID": "mig_co4ahrcfiil5rc1uao60",
+  "checksum": "1:8e77749d7aaf584e8b166567ad493d40f0d78f4a714bb74b75fd9247f5278990",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "userId",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": "null"
+        },
+        "table": "folders"
+      }
+    }
+  ]
+}

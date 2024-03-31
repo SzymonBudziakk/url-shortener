@@ -1,0 +1,18 @@
+{
+  "id": "mig_co4orjupe2mbada2uevg",
+  "parentID": "mig_co4or9upe2mbada2ueug",
+  "checksum": "1:92d5efc43306f4198cd1a277f5ed0093c0f383742182f3ed343d8e99e2a7a482",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "clicks",
+          "type": "int",
+          "notNull": true,
+          "defaultValue": "0"
+        },
+        "table": "urls"
+      }
+    }
+  ]
+}

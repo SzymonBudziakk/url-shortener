@@ -1,0 +1,12 @@
+{
+  "id": "mig_co4pabupe2mbada2uf4g",
+  "parentID": "mig_co4orjupe2mbada2uevg",
+  "checksum": "1:352531c681dbbf02a1f72138d0b48114c83dbc692f243f0823a15b85e3288cdd",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "folders"
+      }
+    }
+  ]
+}

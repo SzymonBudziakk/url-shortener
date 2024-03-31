@@ -20,11 +20,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang='en'>
         <body className={inter.className}>
-          <div className='w-screen min-h-screen flex flex-col'>
+          <div className='container mx-auto'>
             <Navbar />
-            <div className='w-full h-full flex items-center justify-center flex-1'>
-              {children}
-            </div>
+            {children}
           </div>
         </body>
       </html>

@@ -8,10 +8,22 @@ import type {
 
 const tables = [
   {
-    name: "folders",
+    name: "urls",
     columns: [
-      { name: "name", type: "string", unique: true },
-      { name: "userId", type: "string", notNull: true, defaultValue: "null" },
+      { name: "userId", type: "string" },
+      { name: "clicks", type: "int", notNull: true, defaultValue: "0" },
+      {
+        name: "fullUrl",
+        type: "text",
+        notNull: true,
+        defaultValue: "https://www.google.com/",
+      },
+      {
+        name: "shortUrl",
+        type: "text",
+        notNull: true,
+        defaultValue: "https://www.google.com/",
+      },
     ],
   },
 ] as const;
@@ -19,11 +31,11 @@ const tables = [
 export type SchemaTables = typeof tables;
 export type InferredTypes = SchemaInference<SchemaTables>;
 
-export type Folders = InferredTypes["folders"];
-export type FoldersRecord = Folders & XataRecord;
+export type Urls = InferredTypes["urls"];
+export type UrlsRecord = Urls & XataRecord;
 
 export type DatabaseSchema = {
-  folders: FoldersRecord;
+  urls: UrlsRecord;
 };
 
 const DatabaseClient = buildClient();
