@@ -1,4 +1,5 @@
-import FolderForm from '@/components/FolderForm'
+import DataTable from '@/components/DataTable'
+import InsertForm from '@/components/InsertForm'
 import { getXataClient } from '@/xata'
 import { auth } from '@clerk/nextjs'
 import { revalidatePath } from 'next/cache'
@@ -6,15 +7,9 @@ import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
 const schema = z.object({
-  name: z.string().min(5),
+  fullUrl: z.string().min(1),
+  shortUrl: z.string().min(1),
 })
-
-interface URL {
-  userId: string
-  fullUrl: string
-  shortUrl: string
-  clicks: number
-}
 
 export default async function Dashboard() {
   const { userId } = auth()
@@ -35,52 +30,27 @@ export default async function Dashboard() {
   const createFolder = async (formData: FormData) => {
     'use server'
 
-    // const parsedForm = schema.parse({
-    //   name: formData.get('name'),
-    // })
-    // if (!userId) {
-    //   return
-    // }
+    const parsedForm = schema.parse({
+      fullUrl: formData.get('fullUrl'),
+      shortUrl: formData.get('shortUrl'),
+    })
+    if (!userId) {
+      return
+    }
 
-    // const xataClient = getXataClient()
-    // await xataClient.db.folders.create({ ...parsedForm, userId })
-    // revalidatePath('/')
+    const xataClient = getXataClient()
+    await xataClient.db.urls.create({ ...parsedForm, userId })
+    revalidatePath('/')
   }
 
   return (
     <div className='flex flex-col items-center justify-center py-16 gap-12'>
-      <div className='mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-6'>
+      <div className='mx-auto bg-white rounded-lg shadow-lg p-6'>
         <h1 className='text-2xl font-bold mb-4'>URL Shortener</h1>
-
-        <FolderForm createFolder={createFolder} />
+        <InsertForm createFolder={createFolder} />
       </div>
 
-      <table className='min-w-full bg-white rounded-lg overflow-hidden'>
-        <thead className='bg-gray-100 text-gray-600 uppercase text-sm leading-normal'>
-          <tr>
-            <th className='py-3 px-6 text-left'>Original URL</th>
-            <th className='py-3 px-6 text-left'>Short URL</th>
-            <th className='py-3 px-6 text-left'>Clicks</th>
-          </tr>
-        </thead>
-        <tbody className='text-gray-600 text-sm font-light'>
-          {urls.map((url, id) => {
-            return (
-              <tr key={id} className='border-b border-gray-200'>
-                <td className='py-3 px-6 text-left whitespace-nowrap'>
-                  <a href={url.fullUrl}>{url.fullUrl}</a>
-                </td>
-                <td className='py-3 px-6 text-left whitespace-nowrap'>
-                  {url.shortUrl}
-                </td>
-                <td className='py-3 px-6 text-left whitespace-nowrap'>
-                  {url.clicks}
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <DataTable data={urls} />
     </div>
   )
 }
