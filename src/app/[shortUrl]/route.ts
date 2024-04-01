@@ -1,17 +1,14 @@
 import { getXataClient } from '@/xata'
-import { useAuth } from '@clerk/nextjs'
+import { auth, useAuth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 
-export async function GET(request: Request) {
 
-  // const {searchParams} = new URL(request.url)
-  // const shortUrl = searchParams.get('shortUrl')
+export async function GET(req: Request) {
 
-
-
-  const userId = 'user_2eQdjqkbCQ0mWBrJgQyfFxAE4Ks'
-  const shortUrl = 'http://localhost:3000/short'
-
+  const {userId} = auth()
+  console.log(userId)
+  
+  const shortUrl = req.url
   const xata = getXataClient()
   const record = await xata.db.urls
     .filter({ userId: userId, shortUrl: shortUrl })
@@ -19,6 +16,7 @@ export async function GET(request: Request) {
 
   const fullUrl = record?.fullUrl
 
+  // fullUrl you are looking for doesn't exist or in db isnt yours
   if (!fullUrl) {
     return new Response('', {
       status: 302,
@@ -27,9 +25,6 @@ export async function GET(request: Request) {
       }
     })
   }
-
-  console.log(record)
-
 
   return new Response('', {
     status: 302,
