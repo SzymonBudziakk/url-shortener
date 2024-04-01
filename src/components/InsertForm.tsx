@@ -2,16 +2,16 @@
 import { useRef } from 'react'
 
 interface InsertFormProps {
-  createFolder: (formData: FormData) => void
+  insertData: (formData: FormData) => void
 }
 
-export default function InsertForm({ createFolder }: InsertFormProps) {
+export default function InsertForm({ insertData }: InsertFormProps) {
   const formRef = useRef<HTMLFormElement>(null)
 
   return (
     <form
       action={(formData) => {
-        createFolder(formData)
+        insertData(formData)
         formRef.current?.reset()
       }}
       ref={formRef}

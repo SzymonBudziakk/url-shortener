@@ -15,8 +15,6 @@ export default async function Dashboard() {
   const { userId } = auth()
   const xataClient = getXataClient()
 
-  // userId, fullUrl, shortUrl, clicks
-
   if (!userId) {
     redirect('/')
   }
@@ -27,16 +25,13 @@ export default async function Dashboard() {
     })
     .getMany()
 
-  const createFolder = async (formData: FormData) => {
+  const insertData = async (formData: FormData) => {
     'use server'
 
     const parsedForm = schema.parse({
       fullUrl: formData.get('fullUrl'),
       shortUrl: formData.get('shortUrl'),
     })
-    if (!userId) {
-      return
-    }
 
     const xataClient = getXataClient()
     await xataClient.db.urls.create({ ...parsedForm, userId })
@@ -47,7 +42,7 @@ export default async function Dashboard() {
     <div className='flex flex-col items-center justify-center py-16 gap-12'>
       <div className='mx-auto bg-white rounded-lg shadow-lg p-6'>
         <h1 className='text-2xl font-bold mb-4'>URL Shortener</h1>
-        <InsertForm createFolder={createFolder} />
+        <InsertForm insertData={insertData} />
       </div>
 
       <DataTable data={urls} />

@@ -20,10 +20,14 @@ export default function DataTable({ data }: DataTableProps) {
           return (
             <tr key={id} className='border-b border-gray-200'>
               <td className='py-3 px-6 text-left whitespace-nowrap'>
-                <a href={url.fullUrl}>{url.fullUrl}</a>
+                <a href={url.fullUrl} target='_blank'>
+                  {url.fullUrl}
+                </a>
               </td>
               <td className='py-3 px-6 text-left whitespace-nowrap'>
-                {url.shortUrl}
+                <a href={url.shortUrl} target='_blank'>
+                  {url.shortUrl}
+                </a>
               </td>
               <td className='py-3 px-6 text-left whitespace-nowrap'>
                 {url.clicks}
