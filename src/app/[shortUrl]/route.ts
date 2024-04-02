@@ -1,9 +1,6 @@
 import { getXataClient } from '@/xata'
 import { auth } from '@clerk/nextjs'
-
-// deleting record from db
-// slash in short url?
-// not found page / modal in dashboard
+import { redirect } from 'next/navigation'
 
 export async function GET(req: Request) {
   const { userId } = auth()
@@ -16,15 +13,8 @@ export async function GET(req: Request) {
 
   const fullUrl = record?.fullUrl
 
-  // fullUrl you are looking for doesn't exist in db or isnt yours
   if (!fullUrl) {
-    return new Response('', {
-      status: 302,
-      headers: {
-        Location:
-          'https://nextjs.org/docs/app/building-your-application/routing/route-handlers',
-      },
-    })
+    redirect('/error')
   }
 
   await xata.db.urls.update(record.id, {

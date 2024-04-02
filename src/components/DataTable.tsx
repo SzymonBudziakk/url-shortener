@@ -58,6 +58,7 @@ export default function DataTable({ data }: DataTableProps) {
               </TableCell>
               <TableCell>
                 <a href={url.shortUrl} target='_blank'>
+                  {/* {url.shortUrl.split('/').pop()} */}
                   {url.shortUrl}
                 </a>
               </TableCell>

@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 
@@ -9,6 +9,19 @@ interface InsertFormProps {
 
 export default function InsertForm({ insertData }: InsertFormProps) {
   const formRef = useRef<HTMLFormElement>(null)
+
+  const [fullUrl, setFullUrl] = useState('')
+  const [shortUrl, setShortUrl] = useState('')
+  const [isValidFull, setIsValidFull] = useState(false)
+  const [isValidShort, setIsValidShort] = useState(false)
+
+  useEffect(() => {
+    setIsValidFull(fullUrl.length > 0)
+  }, [fullUrl])
+
+  useEffect(() => {
+    setIsValidShort(/^[a-zA-Z0-9]+$/.test(shortUrl))
+  }, [shortUrl])
 
   return (
     <form
@@ -23,6 +36,8 @@ export default function InsertForm({ insertData }: InsertFormProps) {
           FULL URL
         </label>
         <Input
+          value={fullUrl}
+          onChange={(e) => setFullUrl(e.target.value)}
           name='fullUrl'
           id='fullurl'
           type='text'
@@ -34,13 +49,21 @@ export default function InsertForm({ insertData }: InsertFormProps) {
           SHORT URL
         </label>
         <Input
+          value={shortUrl}
+          onChange={(e) => setShortUrl(e.target.value)}
           name='shortUrl'
           id='shortUrl'
           type='text'
           placeholder='Enter desired url...'
         />
+        {!isValidShort && shortUrl.length > 0 && (
+          <p className='text-sm mt-2 ml-3 text-red-600'>{`Only a-z, A-Z, 0-9 characters allowed`}</p>
+        )}
       </div>
-      <Button type='submit' className='w-32'>
+      <Button
+        type='submit'
+        className='w-32'
+        disabled={!isValidShort || !isValidFull}>
         Submit
       </Button>
     </form>

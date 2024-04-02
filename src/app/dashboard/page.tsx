@@ -28,10 +28,10 @@ export default async function Dashboard() {
 
   const insertData = async (formData: FormData) => {
     'use server'
-
+    // dodac pierwsza czesc linku xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     const parsedForm = schema.parse({
       fullUrl: formData.get('fullUrl'),
-      shortUrl: formData.get('shortUrl'),
+      shortUrl: 'abc' + formData.get('shortUrl'),
     })
 
     const xataClient = getXataClient()
