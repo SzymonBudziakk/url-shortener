@@ -5,6 +5,7 @@ import { auth } from '@clerk/nextjs'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import { CardTitle, CardHeader, CardContent, Card } from '@/components/ui/card'
 
 const schema = z.object({
   fullUrl: z.string().min(1),
@@ -39,13 +40,16 @@ export default async function Dashboard() {
   }
 
   return (
-    <div className='flex flex-col items-center justify-center py-16 gap-12'>
-      <div className='mx-auto bg-white rounded-lg shadow-lg p-6'>
-        <h1 className='text-2xl font-bold mb-4'>URL Shortener</h1>
-        <InsertForm insertData={insertData} />
-      </div>
-
+    <section className='flex flex-col items-center w-full max-w-4xl mt-8'>
+      <Card className='w-full'>
+        <CardHeader>
+          <CardTitle>URL Shortener</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <InsertForm insertData={insertData} />
+        </CardContent>
+      </Card>
       <DataTable data={urls} />
-    </div>
+    </section>
   )
 }

@@ -6,8 +6,7 @@ import { auth } from '@clerk/nextjs'
 // not found page / modal in dashboard
 
 export async function GET(req: Request) {
-
-  const {userId} = auth()
+  const { userId } = auth()
   const shortUrl = req.url
   const xata = getXataClient()
 
@@ -22,20 +21,20 @@ export async function GET(req: Request) {
     return new Response('', {
       status: 302,
       headers: {
-        Location: 'https://nextjs.org/docs/app/building-your-application/routing/route-handlers'
-      }
+        Location:
+          'https://nextjs.org/docs/app/building-your-application/routing/route-handlers',
+      },
     })
   }
 
-
-  const incrementClicks = await xata.db.urls.update(record.id, {
+  await xata.db.urls.update(record.id, {
     clicks: record.clicks + 1,
   })
 
   return new Response('', {
     status: 302,
     headers: {
-      Location: fullUrl
-    }
+      Location: fullUrl,
+    },
   })
 }

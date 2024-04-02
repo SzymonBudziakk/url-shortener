@@ -1,5 +1,7 @@
 'use client'
 import { useRef } from 'react'
+import { Input } from './ui/input'
+import { Button } from './ui/button'
 
 interface InsertFormProps {
   insertData: (formData: FormData) => void
@@ -15,36 +17,32 @@ export default function InsertForm({ insertData }: InsertFormProps) {
         formRef.current?.reset()
       }}
       ref={formRef}
-      className='min-w-80'
-    >
-      <div className='flex flex-col gap-2 mb-4'>
-        <label className='label' htmlFor='fullUrl'>
+      className='grid gap-4'>
+      <div className='flex flex-col'>
+        <label className='mb-2 text-sm font-medium' htmlFor='fullUrl'>
           FULL URL
         </label>
-        <input
+        <Input
           name='fullUrl'
+          id='fullurl'
           type='text'
           placeholder='Enter original url...'
-          className='input mb-2'
         />
-        <label className='label' htmlFor='shortUrl'>
+      </div>
+      <div className='flex flex-col'>
+        <label className='mb-2 text-sm font-medium' htmlFor='shortUrl'>
           SHORT URL
         </label>
-        <input
+        <Input
           name='shortUrl'
+          id='shortUrl'
           type='text'
           placeholder='Enter desired url...'
-          className='input'
         />
       </div>
-      <div className='mb-6'>
-        <button
-          type='submit'
-          className='bg-blue-500 w-full hover:bg-blue-600 transition text-white font-bold py-2 px-4 rounded focus:outline-none'
-        >
-          Submit
-        </button>
-      </div>
+      <Button type='submit' className='w-32'>
+        Submit
+      </Button>
     </form>
   )
 }

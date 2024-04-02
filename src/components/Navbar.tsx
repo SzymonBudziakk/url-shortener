@@ -1,52 +1,59 @@
 'use client'
 import { UserButton, useUser } from '@clerk/nextjs'
 import Link from 'next/link'
+import { Button } from './ui/button'
 
 export default function Navbar() {
   const { user, isLoaded } = useUser()
 
   return (
-    <nav className='w-full rounded-xl shadow-md flex justify-between items-center px-8 py-6 mt-4'>
-      <Link href='/' className='font-bold text-lg text-gray-800'>
-        Home
-      </Link>
-      <div className='flex items-center justify-center gap-10'>
-        {isLoaded && user ? (
-          <>
-            <Link href='/dashboard' className='navbarLink'>
-              Dashboard
-            </Link>
-            <UserButton afterSignOutUrl='/' />
-          </>
-        ) : (
-          <>
-            <Link href='/sign-in' className='navbarLink'>
-              Sign In
-            </Link>
-            <Link href='/sign-up' className='navbarLink'>
-              Sign Up
-            </Link>
-          </>
-        )}
-      </div>
-    </nav>
+    <header className='w-full max-w-6xl'>
+      <nav className='flex justify-between items-center p-4 bg-white shadow-md rounded-lg'>
+        <Link href='/' className='flex items-center space-x-4'>
+          <Button className='rounded-full p-2' variant='ghost'>
+            <HomeIcon className='h-4 w-4' />
+          </Button>
+        </Link>
+        <div className='flex items-center space-x-4'>
+          {isLoaded && user ? (
+            <>
+              <Link href='/dashboard'>
+                <Button variant='ghost'>Dashboard</Button>
+              </Link>
+
+              <UserButton afterSignOutUrl='/' />
+            </>
+          ) : (
+            <>
+              <Link href='/sign-in'>
+                <Button variant='ghost'>Sign In</Button>
+              </Link>
+              <Link href='/sign-up'>
+                <Button variant='ghost'>Sign Up</Button>
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
+    </header>
   )
 }
 
-// ;<div className='flex md:hidden'>
-//   <button className='text-gray-800 hover:text-gray-900 focus:outline-none'>
-//     <svg
-//       className='h-6 w-6'
-//       fill='none'
-//       viewBox='0 0 24 24'
-//       stroke='currentColor'
-//     >
-//       <path
-//         strokeLinecap='round'
-//         strokeLinejoin='round'
-//         strokeWidth='2'
-//         d='M4 6h16M4 12h16m-7 6h7'
-//       ></path>
-//     </svg>
-//   </button>
-// </div>
+function HomeIcon(props: { className?: string }) {
+  return (
+    <svg
+      {...props}
+      xmlns='http://www.w3.org/2000/svg'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'>
+      <path d='m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' />
+      <polyline points='9 22 9 12 15 12 15 22' />
+    </svg>
+  )
+}
