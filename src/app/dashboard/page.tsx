@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 import { CardTitle, CardHeader, CardContent, Card } from '@/components/ui/card'
+import { headers } from 'next/headers'
 
 const schema = z.object({
   fullUrl: z.string().min(1),
@@ -28,10 +29,13 @@ export default async function Dashboard() {
 
   const insertData = async (formData: FormData) => {
     'use server'
-    // dodac pierwsza czesc linku xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+    const dir = headers().get('referer')
+    const homeDir = dir?.split('/').slice(0, 3).join('/') + '/'
+
     const parsedForm = schema.parse({
       fullUrl: formData.get('fullUrl'),
-      shortUrl: 'abc' + formData.get('shortUrl'),
+      shortUrl: homeDir + formData.get('shortUrl'),
     })
 
     const xataClient = getXataClient()

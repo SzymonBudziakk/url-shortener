@@ -2,7 +2,6 @@ import { UrlsRecord, getXataClient } from '@/xata'
 import { PageRecordArray, SelectedPick } from '@xata.io/client'
 import Options from './Options'
 import { revalidatePath } from 'next/cache'
-
 import {
   TableHead,
   TableRow,
@@ -58,8 +57,7 @@ export default function DataTable({ data }: DataTableProps) {
               </TableCell>
               <TableCell>
                 <a href={url.shortUrl} target='_blank'>
-                  {/* {url.shortUrl.split('/').pop()} */}
-                  {url.shortUrl}
+                  {url.shortUrl.split('/').pop()}
                 </a>
               </TableCell>
               <TableCell>{url.clicks}</TableCell>
