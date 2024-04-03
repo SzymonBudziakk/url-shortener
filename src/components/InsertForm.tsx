@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
-import { cn } from '@/lib/utils'
 
 interface InsertFormProps {
   insertData: (formData: FormData) => void

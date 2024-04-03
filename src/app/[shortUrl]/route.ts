@@ -21,7 +21,6 @@ export async function GET(req: Request) {
   await xata.db.urls.update(record.id, {
     clicks: record.clicks + 1,
   })
-  revalidatePath('/dashboard')
 
   return new Response('', {
     status: 302,

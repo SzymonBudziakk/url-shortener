@@ -39,8 +39,18 @@ export default async function Dashboard() {
     })
 
     const xataClient = getXataClient()
-    await xataClient.db.urls.create({ ...parsedForm, userId })
-    revalidatePath('/')
+
+    const record = await xataClient.db.urls
+      .filter({ userId: userId, shortUrl: parsedForm.shortUrl })
+      .getFirst()
+
+    if (record) {
+      await record.update({ fullUrl: parsedForm.fullUrl, clicks: 0 })
+    } else {
+      await xataClient.db.urls.create({ ...parsedForm, userId })
+    }
+
+    revalidatePath('/dashboard')
   }
 
   return (
