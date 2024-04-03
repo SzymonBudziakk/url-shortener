@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
+import { cn } from '@/lib/utils'
 
 interface InsertFormProps {
   insertData: (formData: FormData) => void
@@ -57,7 +58,7 @@ export default function InsertForm({ insertData }: InsertFormProps) {
           placeholder='Enter desired url...'
         />
         {!isValidShort && shortUrl.length > 0 && (
-          <p className='text-sm mt-2 ml-3 text-red-600'>{`Only a-z, A-Z, 0-9 characters allowed`}</p>
+          <p className='text-sm mt-2 ml-3 transition duration-300 text-red-600'>{`Only a-z, A-Z, 0-9 characters allowed`}</p>
         )}
       </div>
       <Button

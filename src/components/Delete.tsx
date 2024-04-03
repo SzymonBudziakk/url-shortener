@@ -1,16 +1,16 @@
 'use client'
 
-interface OptionsProps {
+interface DeleteProps {
   shortUrl: string
   userId: string | null | undefined
   deleteRecord: (userId: string | null | undefined, shortUrl: string) => void
 }
 
-export default function Options({
+export default function Delete({
   shortUrl,
   userId,
   deleteRecord,
-}: OptionsProps) {
+}: DeleteProps) {
   return (
     <button onClick={() => deleteRecord(userId, shortUrl)}>
       <TrashIcon className='h-6 w-6 text-gray-500' />

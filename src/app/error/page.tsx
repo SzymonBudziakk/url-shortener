@@ -1,10 +1,9 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { auth } from '@clerk/nextjs'
 import Link from 'next/link'
 
 export default function Error() {
   return (
-    <Card className='w-full max-w-lg mx-auto'>
+    <Card className='w-full max-w-lg mx-auto mt-32 lg:mt-44'>
       <CardHeader className='flex flex-col items-center'>
         <div className='inline-flex flex-col items-center gap-1'>
           <AlertCircleIcon className='w-14 h-14' />
@@ -17,15 +16,15 @@ export default function Error() {
           </div>
         </div>
       </CardHeader>
-      <CardContent className='flex justify-center p-6'>
+      <CardContent className='flex justify-center pb-6 pt-3'>
         <div className='flex gap-2'>
           <Link
-            className='inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white shadow-sm px-8 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300'
+            className='inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm px-8 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300'
             href='/'>
             Home Page
           </Link>
           <Link
-            className='inline-flex h-10 items-center justify-center rounded-md border border-gray-200 border-gray-200 bg-white shadow-sm px-8 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300'
+            className='inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white shadow-sm px-8 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300'
             href='/dashboard'>
             Dashboard
           </Link>

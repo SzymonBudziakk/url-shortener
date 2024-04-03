@@ -1,6 +1,5 @@
 import { UrlsRecord, getXataClient } from '@/xata'
 import { PageRecordArray, SelectedPick } from '@xata.io/client'
-import Options from './Options'
 import { revalidatePath } from 'next/cache'
 import {
   TableHead,
@@ -10,6 +9,7 @@ import {
   TableBody,
   Table,
 } from '@/components/ui/table'
+import Delete from './Delete'
 
 interface DataTableProps {
   data: PageRecordArray<Readonly<SelectedPick<UrlsRecord, ['*']>>>
@@ -51,19 +51,15 @@ export default function DataTable({ data }: DataTableProps) {
           return (
             <TableRow key={id}>
               <TableCell className='font-medium'>
-                <a href={url.fullUrl} target='_blank'>
-                  {url.fullUrl}
-                </a>
+                <a href={url.fullUrl}>{url.fullUrl}</a>
               </TableCell>
               <TableCell>
-                <a href={url.shortUrl} target='_blank'>
-                  {url.shortUrl.split('/').pop()}
-                </a>
+                <a href={url.shortUrl}>{url.shortUrl.split('/').pop()}</a>
               </TableCell>
               <TableCell>{url.clicks}</TableCell>
 
               <TableCell>
-                <Options
+                <Delete
                   shortUrl={url.shortUrl}
                   userId={url.userId}
                   deleteRecord={handleRecordDelete}

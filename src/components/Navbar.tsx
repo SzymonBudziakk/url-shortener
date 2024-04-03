@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <header className='w-full max-w-6xl'>
-      <nav className='flex justify-between items-center p-4 bg-white shadow-md rounded-lg'>
+      <nav className='flex justify-between border border-[#e4e4e7] items-center p-4 bg-white shadow-md rounded-lg'>
         <Link href='/' className='flex items-center space-x-4'>
           <Button className='rounded-full p-2' variant='ghost'>
             <HomeIcon className='h-4 w-4' />

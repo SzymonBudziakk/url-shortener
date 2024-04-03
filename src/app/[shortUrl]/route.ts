@@ -1,5 +1,6 @@
 import { getXataClient } from '@/xata'
 import { auth } from '@clerk/nextjs'
+import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function GET(req: Request) {
@@ -20,6 +21,7 @@ export async function GET(req: Request) {
   await xata.db.urls.update(record.id, {
     clicks: record.clicks + 1,
   })
+  revalidatePath('/dashboard')
 
   return new Response('', {
     status: 302,
